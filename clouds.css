@@ -1,0 +1,79 @@
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.image-wrapper img {
+  display: block;
+}
+
+.cloud-overlay {
+  max-height:200px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 2;
+  margin-bottom: -100px;
+
+/*  transform: translateY(-10%);*/
+/*  transform: translateX(-100px);*/
+}
+
+/*.cloud-overlay {
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+*/
+/*@keyframes drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
+}
+
+.cloud-overlay {
+  animation: drift 6s ease-in-out infinite;
+}*/
+
+@keyframes floatAndDrift {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(5px) translateY(-5px);
+  }
+  50% {
+    transform: translateX(0px) translateY(-10px);
+  }
+  75% {
+    transform: translateX(-5px) translateY(-5px);
+  }
+}
+
+.cloud-overlay {
+  opacity: 0;
+  animation: fadeInCloud 2s ease forwards, floatAndDrift 12s ease-in-out infinite;
+  animation-delay: 0s, 2s; /* Fade starts immediately, float starts after fade */
+  will-change: transform, opacity;
+  pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+@keyframes fadeInCloud {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* slightly below */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
